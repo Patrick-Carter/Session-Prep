@@ -1,0 +1,77 @@
+﻿<Window x:Class="SessionPrepUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xcree="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:SessionPrepUI"
+        mc:Ignorable="d"
+        Title="Session Prep by PCARTER@PDCMIX.COM" MinWidth="500" MaxWidth="1000" 
+        MinHeight="430" MaxHeight="700" 
+        SizeToContent="WidthAndHeight" FontSize="22"
+        Closing="Window_Closing">
+
+    <Border Padding="10">
+        <xcree:BusyIndicator x:Name="progressIndicator" IsBusy="False">
+            <Grid>
+                <StackPanel>
+
+                    <ListView MinHeight="300" MaxHeight="300" x:Name="audioFileListView">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Path=Name}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Button Margin="0 8 0 0" Click="AddFileButtonClick">Add Files</Button>
+                    <Button Margin="0 8" Click="RemoveFileButtonClick">Remove Files</Button>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox IsReadOnly="True" Grid.Column="0" x:Name="filePathTextBox" MaxWidth="350"></TextBox>
+                        <Button Grid.Column="1" Margin="20,0,0,0" x:Name="setFilePathButton" Height="33" VerticalAlignment="Top" Click="setFilePathButtonClick">...</Button>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        
+
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="10" x:Name="blankFileCheckBox"></CheckBox>
+                                <TextBlock>Remove Blank Audio FIles</TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="10"  x:Name="conversionCheckBox"></CheckBox>
+                                <TextBlock>Stereo/Mono Conversion</TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="10"  x:Name="normalizeCheckBox"></CheckBox>
+                                <TextBlock>Normalize To</TextBlock>
+                                <TextBox MinWidth="40" MaxWidth="60" Margin="10 0" x:Name="normalizeToTextBox"></TextBox>
+                                <TextBlock>dBfs</TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Button Grid.Column="1" Margin="10 10 0 0" Click="ProcessButtonClick">Process</Button>
+
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </xcree:BusyIndicator>
+    </Border>
+    
+</Window>
