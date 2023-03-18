@@ -6,13 +6,78 @@
         xmlns:xcree="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:SessionPrepUI"
         mc:Ignorable="d"
-        Title="Session Prep by PCARTER@PDCMIX.COM" MinWidth="500" MaxWidth="1000" 
+        Title="Gain Stager by musicbarined.com" MinWidth="500" MaxWidth="1000" 
         MinHeight="430" MaxHeight="700" 
         SizeToContent="WidthAndHeight" FontSize="22"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        Background="#212121"
+        Foreground="White">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#3F51B5"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0 8 0 0"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#5C6BC0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="#424242"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid>
+                            <Border x:Name="CheckBackground" Background="{TemplateBinding Background}" BorderBrush="White" BorderThickness="1" Width="16" Height="16"/>
+                            <Path x:Name="Checkmark" Stroke="White" StrokeThickness="2" SnapsToDevicePixels="True" Data="M 4.5,7 L 6.5,9 L 11.5,4" Visibility="Collapsed"/>
+                            <Rectangle x:Name="IndeterminateMark" Fill="White" Width="8" Height="2" Visibility="Collapsed"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Checkmark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="CheckBackground" Property="Background" Value="#424242"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter TargetName="IndeterminateMark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="CheckBackground" Property="Background" Value="#424242"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="CheckBackground" Property="Background" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type ListView}">
+            <Setter Property="Background" Value="#424242"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+        </Style>
+    </Window.Resources>
 
     <Border Padding="10">
-        <xcree:BusyIndicator x:Name="progressIndicator" IsBusy="False">
+        <xcree:BusyIndicator x:Name="progressIndicator" IsBusy="false">
             <Grid>
                 <StackPanel>
 
@@ -45,7 +110,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        
+
 
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
@@ -73,5 +138,5 @@
             </Grid>
         </xcree:BusyIndicator>
     </Border>
-    
+
 </Window>

@@ -6,7 +6,6 @@
     <UseWPF>true</UseWPF>
 	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	  <PublishSingleFile>true</PublishSingleFile>
-	  <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
 
   <ItemGroup>
